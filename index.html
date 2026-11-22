@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sheru AI</title>
+<style>body{background:#0f172a;color:white;font-family:sans-serif;margin:0;padding:20px;text-align:center}h1{font-size:42px}h1 span{color:#22c55e}.box{max-width:600px;margin:20px auto;background:#1e293b;padding:20px;border-radius:20px}#chat{height:300px;overflow-y:auto;text-align:left;background:#0f172a;padding:15px;border-radius:15px;margin-bottom:15px}.msg{margin:8px 0;padding:10px;border-radius:10px}.user{background:#22c55e;color:#000;text-align:right}.ai{background:#334155}input{width:70%;padding:12px;border-radius:10px;border:none}button{padding:12px 20px;background:#22c55e;border:none;border-radius:10px;font-weight:bold}</style>
+</head><body>
+<h1>🦁 Sheru <span>AI</span></h1>
+<p>Apna Desi AI Agent - Shiwesh ne banaya!</p>
+<div class="box"><div id="chat"><div class="msg ai">Namaste! Main Sheru AI hu. Kuch pucho!</div></div>
+<input id="inp" placeholder="Kuch likho..."><button onclick="send()">Bhejo</button></div>
+<script>async function send(){let i=document.getElementById('inp');let t=i.value;if(!t)return;let c=document.getElementById('chat');c.innerHTML+=`<div class="msg user">${t}</div>`;i.value='';let r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:t})});let d=await r.json();c.innerHTML+=`<div class="msg ai">${d.reply}</div>`;c.scrollTop=c.scrollHeight}</script>
+</body></html>
